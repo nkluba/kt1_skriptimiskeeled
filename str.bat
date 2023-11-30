@@ -8,9 +8,9 @@ echo String is %strlen% characters long
 
 set "numericCount=0"
 
-for /L %%i in (0,1,%strlen%-1) do (
+for /L %%i in (0,1,%strlen%) do (
     set "char=!str:~%%i,1!"
-    if !char! geq 0 if !char! leq 9 (
+    if "!char!" geq "0" if "!char!" leq "9" (
         set /A numericCount+=1
     )
 )
