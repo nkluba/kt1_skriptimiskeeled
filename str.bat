@@ -13,6 +13,10 @@ set entities=ouml auml uuml otilde scaron zcaron Ouml Auml Uuml Otilde Scaron Zc
    echo %%a 
 ))
 
+(for %%a in (%characters%) do ( 
+   echo %%a 
+))
+
 
 rem for /L %%i in (0,1,%strlen%) do (
 rem     set "char=!str:~%%i,1!"
@@ -25,6 +29,9 @@ for /L %%i in (0,1,%strlen%) do (
     set "char=!str:~%%i,1!"
     set "found="
 	echo !char!
+	for %%a in (%characters%) do ( 
+	   echo %%a 
+	)
 	)
 )
 	
