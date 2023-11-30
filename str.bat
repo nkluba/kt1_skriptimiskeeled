@@ -19,10 +19,24 @@ for %%e in (ouml auml uuml otilde scaron zcaron Ouml Auml Uuml Otilde Scaron Zca
     set /a idx+=1
 )
 
-FOR /L %%i IN (0 1 11) DO  (
-   call echo %%convert[%%i].character%%
-   call echo %%convert[%%i].entity%%
+rem loop and replace special characters with entities
+for /L %%i in (0,1,%strlen%) do (
+    set "char=!str:~%%i,1!"
+    set "found="
+    for /L %%j in (0,1,%idx%) do (
+        if "!char!"=="!convert[%%j].character!" (
+            set /A replacements[!char!]+=1
+            set /A replacements+=1
+            set "converted=!converted!!convert[%%j].entity!"
+            set "found=1"
+        )
+    )
+    if not defined found (
+        set "converted=!converted!!char!"
+    )
 )
+
+echo %converted%
 
 pause
 exit /b
