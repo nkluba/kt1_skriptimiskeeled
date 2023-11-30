@@ -22,6 +22,7 @@ for %%e in (ouml auml uuml otilde scaron zcaron Ouml Auml Uuml Otilde Scaron Zca
 
 set /a strlen-=1
 set /a idx-=1
+set /a totalReplaced=0
 
 rem loop and replace special characters with entities
 for /L %%i in (0,1,%strlen%) do (
@@ -42,11 +43,12 @@ for /L %%i in (0,1,%strlen%) do (
 
 echo %converted%
 
-echo Results:
-echo Converted:
-for /L %%k in (0,1,%idx%) do (
-    if defined replaced[%%k] (
-        echo !convert[%%k].character!: !replaced[%%k]!
+if %totalReplaced% gtr 0 (
+    echo Converted:
+    for /L %%k in (0,1,%idx%) do (
+        if defined replaced[%%k] (
+            echo !convert[%%k].character!: !replaced[%%k]!
+        )
     )
 )
 
