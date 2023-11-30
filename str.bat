@@ -50,8 +50,13 @@ for /L %%k in (0,1,%idx%) do (
     )
 )
 
-echo.
-echo Total: %total_replacements%
+if %totalReplaced% gtr 0 (
+    echo.
+    echo Total: %totalReplaced%
+) else (
+    echo.
+    echo Could not find any characters.
+)
 
 pause
 exit /b
