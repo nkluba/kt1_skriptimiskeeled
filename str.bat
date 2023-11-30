@@ -29,9 +29,8 @@ for /L %%i in (0,1,%strlen%) do (
     set "found="
     for /L %%j in (0,1,%idx%) do (
         if "!char!"=="!convert[%%j].character!" (
-		    echo char !char!
-            set /A replacements[!char!]+=1
-            set /A replacements+=1
+            set /a "replaced[%%j]+=1"
+			set /a totalReplaced+=1
             set "converted=!converted!^^^&!convert[%%j].entity!;"
             set "found=1"
         )
@@ -42,6 +41,17 @@ for /L %%i in (0,1,%strlen%) do (
 )
 
 echo %converted%
+
+echo Results:
+echo Converted:
+for /L %%k in (0,1,%idx%) do (
+    if defined replaced[%%k] (
+        echo !convert[%%k].character!: !replaced[%%k]!
+    )
+)
+
+echo.
+echo Total: %total_replacements%
 
 pause
 exit /b
