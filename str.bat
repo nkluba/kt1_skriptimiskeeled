@@ -13,17 +13,21 @@ set entities=ouml auml uuml otilde scaron zcaron Ouml Auml Uuml Otilde Scaron Zc
    echo %%a 
 ))
 
-set "numericCount=0"
+
+rem for /L %%i in (0,1,%strlen%) do (
+rem     set "char=!str:~%%i,1!"
+rem     if "!char!" geq "0" if "!char!" leq "9" (
+rem         set /A numericCount+=1
+rem     )
+rem )
 
 for /L %%i in (0,1,%strlen%) do (
     set "char=!str:~%%i,1!"
-    if "!char!" geq "0" if "!char!" leq "9" (
-        set /A numericCount+=1
-    )
+    set "found="
+	echo !char!
+	)
 )
-
-echo Number of numeric characters in the string: %numericCount%
-
+	
 pause
 exit /b
 
