@@ -6,6 +6,13 @@ set str=%~1
 call :strLen str strlen
 echo String is %strlen% characters long
 
+set characters=ö ä ü õ š ž Ö Ä Ü Õ Š Ž
+set entities=ouml auml uuml otilde scaron zcaron Ouml Auml Uuml Otilde Scaron Zcaron
+
+(for %%a in (%entities%) do ( 
+   echo %%a 
+))
+
 set "numericCount=0"
 
 for /L %%i in (0,1,%strlen%) do (
